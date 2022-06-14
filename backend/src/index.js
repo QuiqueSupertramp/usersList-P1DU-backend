@@ -1,15 +1,17 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import indexRouter from './routes/index.router.js'
+import usersRouter from './routes/index.router.js'
+import cors from 'cors'
 
 dotenv.config()
 
 const app = express()
 
+app.use(cors());
 app.use(express.json());
 
-app.use('/', indexRouter)
+app.use('/', usersRouter)
 
 const bootstrap = async ()=> {
    mongoose.connect(process.env.MONGODB_URL)
